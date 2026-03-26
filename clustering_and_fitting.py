@@ -12,7 +12,7 @@ import scipy.stats as ss
 import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.linear_model import LinearRegression
-import os
+import warnings
 
 
 def plot_relational_plot(df):
@@ -113,8 +113,9 @@ def perform_clustering(df, col1, col2):
         _inertia = kmeans.inertia_
         return _score, _inertia
 
-    # Fix MKL memory issue
-    os.environ["OMP_NUM_THREADS"] = "1"
+    # Ignore Warnings
+    warnings.filterwarnings("ignore")
+   
 
     # Gather data
     data = df[[col1, col2]]
